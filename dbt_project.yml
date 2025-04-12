@@ -1,0 +1,37 @@
+name: 'Sales'
+version: '1.0.0'
+
+profile: 'Sales'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  Sales:
+    +materialized: table
+    +persist_docs:
+      relation: true
+      columns: true
+    +transient: "{{ false if target.name == 'prod' else true }}"
+    database: "analytics_dev"
+
+    02_core:
+      schema: silver
+
+    03_presentation:
+      schema: gold
+
+snapshots:
+  Sales:
+    target_schema: bronze
+    +strategy: timestamp
+    +updated_at: updated_date
+    +unique_key: id   

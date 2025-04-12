@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: sales_data
+    database: raw
+    schema: sales_data
+    tables:
+      - name: customers
+      - name: inventory
+      - name: orders
+      - name: order_details
+      - name: payments
+      - name: products
+      - name: returns
+      - name: shipments
