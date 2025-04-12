@@ -15,17 +15,16 @@ clean-targets:
   - "dbt_packages"
 
 models:
+  +materialized: table
+  +persist_docs:
+    relation: true
+    columns: true
+  +transient: "{{ false if target.name == 'prod' else true }}"
   Sales:
-    +materialized: table
-    +persist_docs:
-      relation: true
-      columns: true
-    +transient: "{{ false if target.name == 'prod' else true }}"
-    database: "analytics_dev"
+    database: analytics_dev
 
-    02_core:
+    02_staging:
       schema: silver
-
     03_presentation:
       schema: gold
 
@@ -34,4 +33,4 @@ snapshots:
     target_schema: bronze
     +strategy: timestamp
     +updated_at: updated_date
-    +unique_key: id   
+    +unique_key: id
