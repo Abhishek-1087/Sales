@@ -9,6 +9,6 @@ WITH source_shipment_status AS (
 SELECT 
     delivery_status,
     COUNT(*) AS total_shipments,
-    ROUND(AVG(delivery_time_days), 2) AS avg_delivery_days
+    -1 * ROUND(AVG(delivery_time_days), 2) AS avg_delivery_days
 FROM source_shipment_status
 GROUP BY delivery_status
