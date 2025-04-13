@@ -13,7 +13,7 @@ SELECT
     od.product_id,
     p.product_name,
     p.category,
-    SUM(od.quantity) AS units_sold,
+    CAST(SUM(od.quantity) AS INTEGER) AS units_sold,
     SUM(od.total_price) AS revenue_generated
 FROM source_order_detail od
 JOIN source_product p ON od.product_id = p.product_id
