@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "3264d29105a443f56a14",
+  "position": {
+    "x": 10,
+    "y": 0,
+    "z": 0,
+    "height": 360,
+    "width": 1270,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMERACTIVITY_LOG"
+                    }
+                  },
+                  "Property": "EVENT_DATE"
+                }
+              },
+              "queryRef": "DIM_CUSTOMERACTIVITY_LOG.EVENT_DATE",
+              "nativeQueryRef": "EVENT_DATE",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CUSTOMERACTIVITY_LOG"
+                        }
+                      },
+                      "Property": "CUSTOMER_ID"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(DIM_CUSTOMERACTIVITY_LOG.CUSTOMER_ID)",
+              "nativeQueryRef": "Count of CUSTOMER_ID"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_CUSTOMERACTIVITY_LOG"
+                  }
+                },
+                "Property": "EVENT_DATE"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#003F5C'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CountNonNull(DIM_CUSTOMERACTIVITY_LOG.CUSTOMER_ID)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

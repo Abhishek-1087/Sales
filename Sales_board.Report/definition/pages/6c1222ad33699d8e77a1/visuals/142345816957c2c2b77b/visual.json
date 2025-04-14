@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "142345816957c2c2b77b",
+  "position": {
+    "x": 0,
+    "y": 360,
+    "z": 1000,
+    "height": 360,
+    "width": 1280,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_DAILY_SALES_TRENDS"
+                    }
+                  },
+                  "Property": "DATE"
+                }
+              },
+              "queryRef": "DIM_DAILY_SALES_TRENDS.DATE",
+              "nativeQueryRef": "DATE",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_DAILY_SALES_TRENDS"
+                        }
+                      },
+                      "Property": "NET_REVENUE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_DAILY_SALES_TRENDS.NET_REVENUE)",
+              "nativeQueryRef": "Sum of NET_REVENUE"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_DAILY_SALES_TRENDS"
+                        }
+                      },
+                      "Property": "TOTAL_SALES"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_DAILY_SALES_TRENDS.TOTAL_SALES)",
+              "nativeQueryRef": "Sum of TOTAL_SALES"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_DAILY_SALES_TRENDS"
+                  }
+                },
+                "Property": "DATE"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

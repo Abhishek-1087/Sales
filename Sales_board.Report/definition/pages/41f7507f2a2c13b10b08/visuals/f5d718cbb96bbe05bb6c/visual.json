@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "f5d718cbb96bbe05bb6c",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 360,
+    "width": 640,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_PAYMENT_SUCCESS_RATES"
+                    }
+                  },
+                  "Property": "PAYMENT_METHOD"
+                }
+              },
+              "queryRef": "DIM_PAYMENT_SUCCESS_RATES.PAYMENT_METHOD",
+              "nativeQueryRef": "PAYMENT_METHOD",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_PAYMENT_SUCCESS_RATES"
+                    }
+                  },
+                  "Property": "Success Rate"
+                }
+              },
+              "queryRef": "DIM_PAYMENT_SUCCESS_RATES.Success Rate",
+              "nativeQueryRef": "Success Rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_PAYMENT_SUCCESS_RATES"
+                  }
+                },
+                "Property": "Success Rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

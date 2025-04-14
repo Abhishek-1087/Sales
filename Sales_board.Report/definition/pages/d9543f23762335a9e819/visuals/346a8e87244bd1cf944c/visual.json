@@ -1,0 +1,329 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "346a8e87244bd1cf944c",
+  "position": {
+    "x": 10,
+    "y": 370,
+    "z": 1000,
+    "height": 350,
+    "width": 1270,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "Gantt1448688115699",
+    "query": {
+      "queryState": {
+        "EndDate": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                        }
+                      },
+                      "Property": "LAST_ACTIVITY"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(DIM_CUSTOMER_RETENTION_METRIX.LAST_ACTIVITY)",
+              "nativeQueryRef": "Earliest LAST_ACTIVITY"
+            }
+          ]
+        },
+        "ExtraInformation": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                    }
+                  },
+                  "Property": "RETENTION_DAYS"
+                }
+              },
+              "queryRef": "DIM_CUSTOMER_RETENTION_METRIX.RETENTION_DAYS",
+              "nativeQueryRef": "RETENTION_DAYS"
+            }
+          ]
+        },
+        "StartDate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                    }
+                  },
+                  "Property": "FIRST_ACTIVITY"
+                }
+              },
+              "queryRef": "DIM_CUSTOMER_RETENTION_METRIX.FIRST_ACTIVITY",
+              "nativeQueryRef": "FIRST_ACTIVITY"
+            }
+          ]
+        },
+        "Task": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                    }
+                  },
+                  "Property": "CUSTOMER_ID"
+                }
+              },
+              "queryRef": "DIM_CUSTOMER_RETENTION_METRIX.CUSTOMER_ID",
+              "nativeQueryRef": "CUSTOMER_ID"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                  }
+                },
+                "Property": "FIRST_ACTIVITY"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "daysOff": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "taskCompletion": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dateType": [
+        {
+          "properties": {
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Quarter'"
+                }
+              }
+            },
+            "todayColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "axisColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0E002F'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "scrollToCurrentTime": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "groupTasks": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "displayGridLines": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "barsRoundedCorners": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "taskResource": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "taskConfig": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#005DC0'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

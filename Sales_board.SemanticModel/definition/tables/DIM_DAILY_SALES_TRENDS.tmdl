@@ -1,0 +1,105 @@
+table DIM_DAILY_SALES_TRENDS
+	lineageTag: cf988529-6e81-47f6-a79f-a1a2d50e4d1c
+
+	column DATE
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: ccc5454e-f90b-4e19-ba62-d135e662c04c
+		summarizeBy: none
+		sourceColumn: DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TOTAL_ORDERS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: 467ae023-f679-49b5-a5f8-9513ab669ddd
+		summarizeBy: sum
+		sourceColumn: TOTAL_ORDERS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_SALES
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 930252e8-2827-4863-b93c-5622638cd41b
+		summarizeBy: sum
+		sourceColumn: TOTAL_SALES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_TAX
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 0d6ca8e8-f2cd-482c-b2b9-462d4246a47e
+		summarizeBy: sum
+		sourceColumn: TOTAL_TAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_DISCOUNT
+		dataType: double
+		sourceProviderType: double
+		lineageTag: efa54a0b-4382-4b29-b756-2dea5820d6ac
+		summarizeBy: sum
+		sourceColumn: TOTAL_DISCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NET_REVENUE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: d1023325-ba19-4f05-92b6-a7f839a40537
+		summarizeBy: sum
+		sourceColumn: NET_REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PREVIOUS_DAY_REVENUE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 261f7702-7ce8-462f-b6c6-af371dcead11
+		summarizeBy: sum
+		sourceColumn: PREVIOUS_DAY_REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVENUE_CHANGE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 2f284b9e-2695-4358-9e72-6991343998dd
+		summarizeBy: sum
+		sourceColumn: REVENUE_CHANGE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_DAILY_SALES_TRENDS = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_DAILY_SALES_TRENDS_Table = GOLD_Schema{[Name="DIM_DAILY_SALES_TRENDS",Kind="Table"]}[Data]
+				in
+				    DIM_DAILY_SALES_TRENDS_Table
+
+	annotation PBI_ResultType = Table
+

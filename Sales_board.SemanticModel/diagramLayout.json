@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 2272,
+            "y": 48
+          },
+          "nodeIndex": "DIM_CATEGORY_SALES_PERFORMANCE",
+          "nodeLineageTag": "c3d9e214-9791-443b-9bb0-c9e4b93fe6f6",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2556,
+            "y": 36
+          },
+          "nodeIndex": "DIM_CUSTOMER_LIFETIME_VALUE",
+          "nodeLineageTag": "99b99035-87c1-4dd0-9b82-67cd59f97ce7",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2840,
+            "y": 36
+          },
+          "nodeIndex": "DIM_CUSTOMER_RETENTION_METRIX",
+          "nodeLineageTag": "cf591f17-453a-4d71-ba4c-484b18bbad9f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3124,
+            "y": 0
+          },
+          "nodeIndex": "DIM_DAILY_SALES_TRENDS",
+          "nodeLineageTag": "cf988529-6e81-47f6-a79f-a1a2d50e4d1c",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3408,
+            "y": 48
+          },
+          "nodeIndex": "DIM_PAYMENT_SUCCESS_RATES",
+          "nodeLineageTag": "04538f02-1dd0-491c-aebe-bcb7d9c0042c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3692,
+            "y": 36
+          },
+          "nodeIndex": "DIM_PRODUCT_RETURN_RATES",
+          "nodeLineageTag": "72f70a18-f5d1-4cd2-85ec-b69f2085bcdd",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3976,
+            "y": 60
+          },
+          "nodeIndex": "DIM_SHIPPING_PERFORMANCE",
+          "nodeLineageTag": "ecd0f422-add3-409f-912a-119a1d7ded86",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 36
+          },
+          "nodeIndex": "DIM_TOPSELLING_PRODUCTS",
+          "nodeLineageTag": "f0fa3187-1fbc-4960-bffe-87d647e149b4",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 24
+          },
+          "nodeIndex": "DIM_PAYMENT_SUMMERY",
+          "nodeLineageTag": "3d1781f2-96fe-44f6-a9bd-583ff32cbdf3",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 24
+          },
+          "nodeIndex": "DIM_CUSTOMERACTIVITY_LOG",
+          "nodeLineageTag": "deb6b457-d84e-4e05-88c2-88c71dae74d3",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 0
+          },
+          "nodeIndex": "DIM_MONTHLY_SALES_TREND",
+          "nodeLineageTag": "d58ba17f-c4bd-4efd-88ca-3b8143824a36",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

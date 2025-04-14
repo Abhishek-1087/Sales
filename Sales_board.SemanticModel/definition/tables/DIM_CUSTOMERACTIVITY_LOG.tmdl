@@ -1,0 +1,73 @@
+table DIM_CUSTOMERACTIVITY_LOG
+	lineageTag: deb6b457-d84e-4e05-88c2-88c71dae74d3
+
+	column EVENT_ID
+		dataType: string
+		sourceProviderType: nvarchar(263)
+		lineageTag: 37001576-8efb-4068-a276-09b0559984e0
+		summarizeBy: none
+		sourceColumn: EVENT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: f055e2ec-76c2-46b5-92ec-ee18eb6117c8
+		summarizeBy: none
+		sourceColumn: CUSTOMER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EVENT_TYPE
+		dataType: string
+		sourceProviderType: nvarchar(7)
+		lineageTag: 84d60f91-9d9a-459b-adc3-80a2f4a0d171
+		summarizeBy: none
+		sourceColumn: EVENT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column EVENT_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 5092ac82-c6b9-4588-acad-3c7031c1ef94
+		summarizeBy: none
+		sourceColumn: EVENT_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RELATED_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: a20001c1-86ef-4f19-9148-4db2724d782f
+		summarizeBy: none
+		sourceColumn: RELATED_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMOUNT
+		dataType: double
+		sourceProviderType: double
+		lineageTag: c764dbc9-be2b-44a5-a7bb-2fa9fd89b3a6
+		summarizeBy: sum
+		sourceColumn: AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_CUSTOMERACTIVITY_LOG = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("acucxxg-xyb50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_CUSTOMERACTIVITY_LOG_Table = GOLD_Schema{[Name="DIM_CUSTOMERACTIVITY_LOG",Kind="Table"]}[Data]
+				in
+				    DIM_CUSTOMERACTIVITY_LOG_Table
+
+	annotation PBI_ResultType = Table
+

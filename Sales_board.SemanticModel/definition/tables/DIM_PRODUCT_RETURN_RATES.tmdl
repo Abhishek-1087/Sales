@@ -1,0 +1,128 @@
+table DIM_PRODUCT_RETURN_RATES
+	lineageTag: 72f70a18-f5d1-4cd2-85ec-b69f2085bcdd
+
+	column PRODUCT_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: 3c1e5d9b-ec22-48df-9fe4-5962d725c480
+		summarizeBy: none
+		sourceColumn: PRODUCT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_NAME
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: 9b6d3e8c-23a3-41ea-b561-a9ea96d55fb5
+		summarizeBy: none
+		sourceColumn: PRODUCT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETURN_COUNT
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: 55168edc-1960-404c-abf9-bd2a10b4f562
+		summarizeBy: sum
+		sourceColumn: RETURN_COUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SOLD_QUANTITY
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 1b0a8ce2-9d53-40a7-8615-36de99608c3b
+		summarizeBy: sum
+		sourceColumn: SOLD_QUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RETURN_RATE
+		dataType: double
+		sourceProviderType: decimal(38, 4)
+		lineageTag: 291f7a33-880e-41ad-9200-b2ff0b8e94c2
+		summarizeBy: sum
+		sourceColumn: RETURN_RATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"DIM_PRODUCT_RETURN_RATES","TableItemName":"RETURN_RATE (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'RETURN_RATE (bins)' =
+			IF(
+				ISBLANK('DIM_PRODUCT_RETURN_RATES'[RETURN_RATE]),
+				BLANK(),
+				IF(
+					'DIM_PRODUCT_RETURN_RATES'[RETURN_RATE] >= 0,
+					ROUNDDOWN('DIM_PRODUCT_RETURN_RATES'[RETURN_RATE] / 0.05, 0) * 0.05,
+					ROUNDUP('DIM_PRODUCT_RETURN_RATES'[RETURN_RATE] / 0.05, 0) * 0.05
+				)
+			)
+		lineageTag: 14ab2217-975a-4113-bed7-c37923e6034a
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "DIM_PRODUCT_RETURN_RATES"
+				          }
+				        },
+				        "Property": "RETURN_RATE"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 0.05,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"DIM_PRODUCT_RETURN_RATES"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"RETURN_RATE"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"RETURN_RATE"}},"Size":0.05}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ReturnRateBucket = ```
+			
+			SWITCH(
+			    TRUE(),
+			    [return_rate] < 0.05, "0% - 5%",
+			    [return_rate] < 0.10, "5% - 10%",
+			    [return_rate] < 0.15, "10% - 15%",
+			    [return_rate] < 0.20, "15% - 20%",
+			    "20%+"
+			)
+			
+			```
+		lineageTag: aabc0ba6-bfda-46db-84f7-95e2a9e20888
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PRODUCT_RETURN_RATES = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_PRODUCT_RETURN_RATES_Table = GOLD_Schema{[Name="DIM_PRODUCT_RETURN_RATES",Kind="Table"]}[Data]
+				in
+				    DIM_PRODUCT_RETURN_RATES_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "98a507d041b12f9e1397",
+  "position": {
+    "x": 650,
+    "y": 370,
+    "z": 3000,
+    "height": 350,
+    "width": 630,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                    }
+                  },
+                  "Property": "CUSTOMER_ID"
+                }
+              },
+              "queryRef": "DIM_CUSTOMER_RETENTION_METRIX.CUSTOMER_ID",
+              "nativeQueryRef": "CUSTOMER_ID",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                        }
+                      },
+                      "Property": "TOTAL_VISITS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_CUSTOMER_RETENTION_METRIX.TOTAL_VISITS)",
+              "nativeQueryRef": "Sum of TOTAL_VISITS"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "DIM_CUSTOMER_RETENTION_METRIX"
+                      }
+                    },
+                    "Property": "TOTAL_VISITS"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

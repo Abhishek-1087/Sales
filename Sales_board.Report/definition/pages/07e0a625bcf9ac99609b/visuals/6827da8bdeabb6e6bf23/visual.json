@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "6827da8bdeabb6e6bf23",
+  "position": {
+    "x": 0,
+    "y": 61,
+    "z": 1000,
+    "height": 179,
+    "width": 320,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "multiRowCard",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_TOPSELLING_PRODUCTS"
+                    }
+                  },
+                  "Property": "Units Sold"
+                }
+              },
+              "queryRef": "DIM_TOPSELLING_PRODUCTS.Units Sold",
+              "nativeQueryRef": "UNITS SOLD",
+              "displayName": "UNITS SOLD"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_TOPSELLING_PRODUCTS"
+                        }
+                      },
+                      "Property": "REVENUE_GENERATED"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_TOPSELLING_PRODUCTS.REVENUE_GENERATED)",
+              "nativeQueryRef": "REVENUE GENERATED",
+              "displayName": "REVENUE GENERATED"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_TOPSELLING_PRODUCTS"
+                    }
+                  },
+                  "Property": "Average Price Per Unit"
+                }
+              },
+              "queryRef": "DIM_TOPSELLING_PRODUCTS.Average Price Per Unit",
+              "nativeQueryRef": "Average Price Per Unit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_TOPSELLING_PRODUCTS"
+                    }
+                  },
+                  "Property": "Revenue % of Total"
+                }
+              },
+              "queryRef": "DIM_TOPSELLING_PRODUCTS.Revenue % of Total",
+              "nativeQueryRef": "Revenue % of Total"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_TOPSELLING_PRODUCTS"
+                    }
+                  },
+                  "Property": "CATEGORY"
+                }
+              },
+              "queryRef": "DIM_TOPSELLING_PRODUCTS.CATEGORY",
+              "nativeQueryRef": "CATEGORY"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_TOPSELLING_PRODUCTS"
+                  }
+                },
+                "Property": "Units Sold"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataLabels": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

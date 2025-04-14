@@ -1,0 +1,89 @@
+table DIM_TOPSELLING_PRODUCTS
+	lineageTag: f0fa3187-1fbc-4960-bffe-87d647e149b4
+
+	measure 'Average Price Per Unit' =
+			
+			DIVIDE(
+			    SUM([revenue_generated]),
+			    SUM([units_sold])
+			)
+		lineageTag: d21835e8-b033-4e35-bbf0-aaaec88bbc59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue % of Total' =
+			
+			DIVIDE(
+			    SUM([revenue_generated]),
+			    CALCULATE(SUM([revenue_generated]), ALL(DIM_TOPSELLING_PRODUCTS))
+			)
+		lineageTag: 16c84f1e-52b2-4a4d-932e-54c9ad8dccb9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Units Sold' = INT(SUM([units_sold]))
+		formatString: 0
+		lineageTag: ca05ad3e-15de-4bd2-8c65-daa97752ac76
+
+	column PRODUCT_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: fbefc4f8-567b-4ea7-80df-d2e167d3d783
+		summarizeBy: none
+		sourceColumn: PRODUCT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_NAME
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: 3e82ecff-683e-46dd-b630-9ac974557dea
+		summarizeBy: none
+		sourceColumn: PRODUCT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: 3fe1751d-4efa-4c98-9151-4d46513094db
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column UNITS_SOLD
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: 97624593-cc81-4d4d-bcb0-3b30f3a97ae3
+		summarizeBy: sum
+		sourceColumn: UNITS_SOLD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVENUE_GENERATED
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 0668a7e6-03f4-458b-8e7e-49953af386a6
+		summarizeBy: sum
+		sourceColumn: REVENUE_GENERATED
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_TOPSELLING_PRODUCTS = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_TOPSELLING_PRODUCTS_Table = GOLD_Schema{[Name="DIM_TOPSELLING_PRODUCTS",Kind="Table"]}[Data]
+				in
+				    DIM_TOPSELLING_PRODUCTS_Table
+
+	annotation PBI_ResultType = Table
+

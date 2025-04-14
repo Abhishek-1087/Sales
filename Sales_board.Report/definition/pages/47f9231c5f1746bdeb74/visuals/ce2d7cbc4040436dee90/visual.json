@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "ce2d7cbc4040436dee90",
+  "position": {
+    "x": 650,
+    "y": 0,
+    "z": 1000,
+    "height": 350,
+    "width": 630,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
+                        }
+                      },
+                      "Property": "LIFETIME_VALUE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_CUSTOMER_LIFETIME_VALUE.LIFETIME_VALUE)",
+              "nativeQueryRef": "Sum of LIFETIME_VALUE"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
+                    }
+                  },
+                  "Property": "CUSTOMER_ID"
+                }
+              },
+              "queryRef": "DIM_CUSTOMER_LIFETIME_VALUE.CUSTOMER_ID",
+              "nativeQueryRef": "CUSTOMER_ID",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
+                        }
+                      },
+                      "Property": "AVG_ORDER_VALUE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_CUSTOMER_LIFETIME_VALUE.AVG_ORDER_VALUE)",
+              "nativeQueryRef": "Sum of AVG_ORDER_VALUE"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
