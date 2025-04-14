@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "a84d8aa146b052498657",
+  "position": {
+    "x": 640,
+    "y": 0,
+    "z": 2000,
+    "height": 360,
+    "width": 640,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CATEGORY_SALES_PERFORMANCE"
+                    }
+                  },
+                  "Property": "CATEGORY"
+                }
+              },
+              "queryRef": "DIM_CATEGORY_SALES_PERFORMANCE.CATEGORY",
+              "nativeQueryRef": "CATEGORY"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CATEGORY_SALES_PERFORMANCE"
+                        }
+                      },
+                      "Property": "TOTAL_REVENUE"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_CATEGORY_SALES_PERFORMANCE.TOTAL_REVENUE)1",
+              "nativeQueryRef": "Sum of TOTAL_REVENUE"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CATEGORY_SALES_PERFORMANCE"
+                    }
+                  },
+                  "Property": "TOTAL_UNITS_SOLD"
+                }
+              },
+              "queryRef": "Sum(DIM_CATEGORY_SALES_PERFORMANCE.TOTAL_UNITS_SOLD)",
+              "nativeQueryRef": "TOTAL_UNITS_SOLD",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CATEGORY_SALES_PERFORMANCE"
+                    }
+                  },
+                  "Property": "TOTAL_REVENUE"
+                }
+              },
+              "queryRef": "Sum(DIM_CATEGORY_SALES_PERFORMANCE.TOTAL_REVENUE)",
+              "nativeQueryRef": "TOTAL_REVENUE"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,47 @@
+table DIM_SHIPPING_PERFORMANCE
+	lineageTag: ecd0f422-add3-409f-912a-119a1d7ded86
+
+	column DELIVERY_STATUS
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: e975b014-f153-4710-b51e-99e348fac873
+		summarizeBy: none
+		sourceColumn: DELIVERY_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_SHIPMENTS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: eeefeffb-bf6a-434c-96c9-9eeefea2156b
+		summarizeBy: sum
+		sourceColumn: TOTAL_SHIPMENTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_DELIVERY_DAYS
+		dataType: double
+		sourceProviderType: decimal(28, 2)
+		lineageTag: 523f03cc-54c1-4940-b3aa-fb1bf70456ac
+		summarizeBy: sum
+		sourceColumn: AVG_DELIVERY_DAYS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_SHIPPING_PERFORMANCE = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_SHIPPING_PERFORMANCE_Table = GOLD_Schema{[Name="DIM_SHIPPING_PERFORMANCE",Kind="Table"]}[Data]
+				in
+				    DIM_SHIPPING_PERFORMANCE_Table
+
+	annotation PBI_ResultType = Table
+

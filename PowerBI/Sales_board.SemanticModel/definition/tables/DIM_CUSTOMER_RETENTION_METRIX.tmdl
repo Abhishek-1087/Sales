@@ -1,0 +1,67 @@
+table DIM_CUSTOMER_RETENTION_METRIX
+	lineageTag: cf591f17-453a-4d71-ba4c-484b18bbad9f
+
+	column CUSTOMER_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: a245665a-351d-43a1-bbad-21c5a49066f9
+		summarizeBy: none
+		sourceColumn: CUSTOMER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_VISITS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: affc2c85-4f03-4524-901c-9c32a80fb2f3
+		summarizeBy: sum
+		sourceColumn: TOTAL_VISITS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FIRST_ACTIVITY
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 86d978eb-5ec7-440b-8381-9ce275644077
+		summarizeBy: none
+		sourceColumn: FIRST_ACTIVITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_ACTIVITY
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: a703455b-1802-42d8-a2af-5366c4a55d69
+		summarizeBy: none
+		sourceColumn: LAST_ACTIVITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETENTION_DAYS
+		dataType: double
+		sourceProviderType: decimal(9, 0)
+		lineageTag: d85bc900-0211-485d-9aae-3d1b7df7b74f
+		summarizeBy: sum
+		sourceColumn: RETENTION_DAYS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_CUSTOMER_RETENTION_METRIX = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_CUSTOMER_RETENTION_METRIX_Table = GOLD_Schema{[Name="DIM_CUSTOMER_RETENTION_METRIX",Kind="Table"]}[Data]
+				in
+				    DIM_CUSTOMER_RETENTION_METRIX_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,73 @@
+table DIM_PAYMENT_SUMMERY
+	lineageTag: 3d1781f2-96fe-44f6-a9bd-583ff32cbdf3
+
+	column PAYMENT_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: fc5bd626-61fc-4963-a28a-327051ce44bd
+		summarizeBy: none
+		sourceColumn: PAYMENT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDER_ID
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: dfdc5be0-e11f-43b6-9370-bb200d0e930f
+		summarizeBy: none
+		sourceColumn: ORDER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENT_METHOD
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: bb46bb45-a3e6-4095-ab60-60c75f788d64
+		summarizeBy: none
+		sourceColumn: PAYMENT_METHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: ef19fb7e-71a9-4956-944a-1eca816ce5c8
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMOUNT
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 0a599bd5-6073-486d-ae4b-e763bbd578f0
+		summarizeBy: sum
+		sourceColumn: AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PAYMENT_DATE
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 4aee85ce-4334-4e68-877a-a733c4967bbb
+		summarizeBy: none
+		sourceColumn: PAYMENT_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PAYMENT_SUMMERY = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("acucxxg-xyb50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_PAYMENT_SUMMERY_Table = GOLD_Schema{[Name="DIM_PAYMENT_SUMMERY",Kind="Table"]}[Data]
+				in
+				    DIM_PAYMENT_SUMMERY_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.6.0/schema.json",
+  "name": "e89630a72f296a996f05",
+  "position": {
+    "x": 0,
+    "y": 10,
+    "z": 0,
+    "height": 360,
+    "width": 630,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
+                    }
+                  },
+                  "Property": "LifetimeValueRange"
+                }
+              },
+              "queryRef": "DIM_CUSTOMER_LIFETIME_VALUE.LifetimeValueRange",
+              "nativeQueryRef": "LifetimeValueRange",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
+                        }
+                      },
+                      "Property": "CUSTOMER_ID"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(DIM_CUSTOMER_LIFETIME_VALUE.CUSTOMER_ID)",
+              "nativeQueryRef": "CUSTOMER_ID"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
+                  }
+                },
+                "Property": "LifetimeValueRange"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,58 @@
+table DIM_CATEGORY_SALES_PERFORMANCE
+	lineageTag: c3d9e214-9791-443b-9bb0-c9e4b93fe6f6
+
+	column CATEGORY
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: ba0dfa6a-1a73-4701-99b8-fd249bcafed1
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_UNITS_SOLD
+		dataType: double
+		sourceProviderType: decimal(38, 0)
+		lineageTag: bd6849ec-8e66-4f41-884c-c0d8329b76af
+		summarizeBy: sum
+		sourceColumn: TOTAL_UNITS_SOLD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_REVENUE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 9a24f4ab-29d9-4757-ae16-032ce4352d51
+		summarizeBy: sum
+		sourceColumn: TOTAL_REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_REVENUE_PER_PRODUCT
+		dataType: double
+		sourceProviderType: double
+		lineageTag: e7f448b5-cdca-4e1f-932d-41179f6e6524
+		summarizeBy: sum
+		sourceColumn: AVG_REVENUE_PER_PRODUCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_CATEGORY_SALES_PERFORMANCE = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_CATEGORY_SALES_PERFORMANCE_Table = GOLD_Schema{[Name="DIM_CATEGORY_SALES_PERFORMANCE",Kind="Table"]}[Data]
+				in
+				    DIM_CATEGORY_SALES_PERFORMANCE_Table
+
+	annotation PBI_ResultType = Table
+

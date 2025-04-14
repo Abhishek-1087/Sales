@@ -1,0 +1,67 @@
+table DIM_PAYMENT_SUCCESS_RATES
+	lineageTag: 04538f02-1dd0-491c-aebe-bcb7d9c0042c
+
+	measure 'Success Rate' = ```
+			
+			DIVIDE(SUM([SUCCESSFUL_PAYMENTS]), SUM([TOTAL_TRANSACTIONS]))
+			
+			```
+		lineageTag: fb86fdd6-04f6-44ae-9c3c-99bc80969df2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PAYMENT_METHOD
+		dataType: string
+		sourceProviderType: nvarchar(256)
+		lineageTag: 7e6507bf-3d83-4ef4-81d5-d63b16d0fa87
+		summarizeBy: none
+		sourceColumn: PAYMENT_METHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_TRANSACTIONS
+		dataType: double
+		sourceProviderType: decimal(18, 0)
+		lineageTag: 06096f2e-82f1-4b2e-9d96-396d3a33326d
+		summarizeBy: sum
+		sourceColumn: TOTAL_TRANSACTIONS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUCCESSFUL_PAYMENTS
+		dataType: double
+		sourceProviderType: decimal(13, 0)
+		lineageTag: a6e28c9b-9666-4873-af26-c44e4d4a7a90
+		summarizeBy: sum
+		sourceColumn: SUCCESSFUL_PAYMENTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUCCESS_RATE
+		dataType: double
+		sourceProviderType: decimal(38, 4)
+		lineageTag: ed1a56f0-9b4d-4e8e-9e79-00dfb900180b
+		summarizeBy: sum
+		sourceColumn: SUCCESS_RATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_PAYMENT_SUCCESS_RATES = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("ACUCXXG-XYB50667.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    ANALYTICS_DEV_Database = Source{[Name="ANALYTICS_DEV",Kind="Database"]}[Data],
+				    GOLD_Schema = ANALYTICS_DEV_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    DIM_PAYMENT_SUCCESS_RATES_Table = GOLD_Schema{[Name="DIM_PAYMENT_SUCCESS_RATES",Kind="Table"]}[Data]
+				in
+				    DIM_PAYMENT_SUCCESS_RATES_Table
+
+	annotation PBI_ResultType = Table
+
