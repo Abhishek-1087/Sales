@@ -8,7 +8,7 @@ WITH source_order_summary AS (
 
 SELECT 
     customer_id,
-    COUNT(*) AS total_orders,
+    COUNT(order_id) AS total_orders,
     SUM(net_amount) AS lifetime_value,
     AVG(net_amount) AS avg_order_value,
     MAX(order_date) AS last_order_date
