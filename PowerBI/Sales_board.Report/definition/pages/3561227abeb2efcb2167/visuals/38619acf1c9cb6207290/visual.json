@@ -51,7 +51,8 @@
                 }
               },
               "queryRef": "Sum(DIM_MONTHLY_SALES_TREND.REVENUE_CHANGE)",
-              "nativeQueryRef": "Sum of REVENUE_CHANGE"
+              "nativeQueryRef": "REVENUE CHANGE",
+              "displayName": "REVENUE CHANGE"
             }
           ]
         }

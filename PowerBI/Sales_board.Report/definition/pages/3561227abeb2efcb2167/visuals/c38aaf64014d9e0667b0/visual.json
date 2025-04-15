@@ -51,7 +51,8 @@
                 }
               },
               "queryRef": "Sum(DIM_MONTHLY_SALES_TREND.NET_REVENUE)",
-              "nativeQueryRef": "Sum of NET_REVENUE"
+              "nativeQueryRef": "NET REVENUE",
+              "displayName": "NET REVENUE"
             }
           ]
         }
