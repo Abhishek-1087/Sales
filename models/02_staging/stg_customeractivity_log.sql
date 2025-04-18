@@ -4,12 +4,15 @@
 
 WITH source_order AS (
     SELECT * FROM {{ ref('snap_orders') }}
+    WHERE dbt_valid_to IS NULL
 ),
 source_payment AS (
     SELECT * FROM {{ ref('snap_payments') }}
+    WHERE dbt_valid_to IS NULL
 ),
 source_return AS (
     SELECT * FROM {{ ref('snap_returns') }}
+    WHERE dbt_valid_to IS NULL
 )
 
 SELECT 

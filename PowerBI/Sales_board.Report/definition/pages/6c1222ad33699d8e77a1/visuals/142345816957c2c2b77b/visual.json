@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DIM_DAILY_SALES_TRENDS"
+                      "Entity": "DIM_MONTHLY_SALES_TREND"
                     }
                   },
-                  "Property": "DATE"
+                  "Property": "MONTH"
                 }
               },
-              "queryRef": "DIM_DAILY_SALES_TRENDS.DATE",
-              "nativeQueryRef": "DATE",
+              "queryRef": "DIM_MONTHLY_SALES_TREND.MONTH",
+              "nativeQueryRef": "MONTH",
               "active": true
             }
           ]
@@ -41,26 +41,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "DIM_DAILY_SALES_TRENDS"
-                        }
-                      },
-                      "Property": "NET_REVENUE"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(DIM_DAILY_SALES_TRENDS.NET_REVENUE)",
-              "nativeQueryRef": "Sum of NET_REVENUE"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DIM_DAILY_SALES_TRENDS"
+                          "Entity": "DIM_MONTHLY_SALES_TREND"
                         }
                       },
                       "Property": "TOTAL_SALES"
@@ -69,8 +50,27 @@
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(DIM_DAILY_SALES_TRENDS.TOTAL_SALES)",
+              "queryRef": "Sum(DIM_MONTHLY_SALES_TREND.TOTAL_SALES)",
               "nativeQueryRef": "Sum of TOTAL_SALES"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DIM_MONTHLY_SALES_TREND"
+                        }
+                      },
+                      "Property": "TOTAL_TAX"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DIM_MONTHLY_SALES_TREND.TOTAL_TAX)",
+              "nativeQueryRef": "Sum of TOTAL_TAX"
             }
           ]
         }
@@ -82,10 +82,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "DIM_DAILY_SALES_TRENDS"
+                    "Entity": "DIM_MONTHLY_SALES_TREND"
                   }
                 },
-                "Property": "DATE"
+                "Property": "MONTH"
               }
             },
             "direction": "Ascending"

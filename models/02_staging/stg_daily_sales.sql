@@ -4,6 +4,7 @@
 
 WITH source_order AS (
     SELECT * FROM {{ ref('snap_orders') }}
+    WHERE dbt_valid_to IS NULL
 )
 
 SELECT 

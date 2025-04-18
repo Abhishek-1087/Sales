@@ -4,6 +4,7 @@
 
 WITH source_shipment AS (
     SELECT * FROM {{ ref('snap_shipments') }}
+    WHERE dbt_valid_to IS NULL
 )
 
 SELECT 

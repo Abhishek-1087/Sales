@@ -51,27 +51,10 @@
                 }
               },
               "queryRef": "CountNonNull(DIM_CUSTOMER_LIFETIME_VALUE.CUSTOMER_ID)",
-              "nativeQueryRef": "CUSTOMER_ID"
+              "nativeQueryRef": "Count of CUSTOMER_ID"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "DIM_CUSTOMER_LIFETIME_VALUE"
-                  }
-                },
-                "Property": "LifetimeValueRange"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ]
       }
     },
     "drillFilterOtherVisuals": true

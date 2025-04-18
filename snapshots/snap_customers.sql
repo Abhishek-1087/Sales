@@ -25,7 +25,7 @@
     , deduped_data AS (
         SELECT 
             * exclude(rn),
-            TO_DATE(signup_date, 'DD-MM-YYYY') AS signup_date_converted
+            -- signup_date AS signup_date_converted
         FROM valid
         WHERE rn = 1
     )
@@ -41,7 +41,7 @@
         address,
         city,
         country,
-        signup_date_converted AS signup_date  
+        signup_date  
     FROM deduped_data
 
 {% endsnapshot %}

@@ -26,7 +26,7 @@
                   "Property": "SOLD_QUANTITY"
                 }
               },
-              "queryRef": "Sum(DIM_PRODUCT_RETURN_RATES.SOLD_QUANTITY)",
+              "queryRef": "DIM_PRODUCT_RETURN_RATES.SOLD_QUANTITY",
               "nativeQueryRef": "SOLD_QUANTITY",
               "active": true
             }
@@ -101,13 +101,6 @@
                 }
               }
             },
-            "end": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
             "invertAxis": {
               "expr": {
                 "Literal": {
@@ -119,6 +112,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
                 }
               }
             }
@@ -138,7 +138,7 @@
             "end": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "20000D"
                 }
               }
             },

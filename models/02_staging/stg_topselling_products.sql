@@ -4,9 +4,11 @@
 
 WITH source_order_detail AS (
     SELECT * FROM {{ ref('snap_order_details') }}
+    WHERE dbt_valid_to IS NULL
 ),
 source_product AS (
     SELECT * FROM {{ ref('snap_products') }}
+    WHERE dbt_valid_to IS NULL
 )
 
 SELECT 

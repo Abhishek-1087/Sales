@@ -4,12 +4,15 @@
 
 WITH source_customer AS (
     SELECT * FROM {{ ref('snap_customers') }}
+    WHERE dbt_valid_to IS NULL
 ),
 source_order AS (
     SELECT * FROM {{ ref('snap_orders') }}
+    WHERE dbt_valid_to IS NULL
 ),
 source_order_detail AS (
     SELECT * FROM {{ ref('snap_order_details') }}
+    WHERE dbt_valid_to IS NULL
 ),
 
 -- Pre-aggregate order details to get total items per order

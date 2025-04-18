@@ -4,6 +4,7 @@
 
 WITH source_payment AS (
     SELECT * FROM {{ ref('snap_payments') }}
+    WHERE dbt_valid_to IS NULL
 )
 
 SELECT 
